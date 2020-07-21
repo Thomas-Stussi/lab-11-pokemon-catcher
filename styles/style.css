@@ -26,7 +26,6 @@ body {
     -webkit-text-stroke: 2px black;
     color: yellow;
     background-image: url('../assets/forest.jpg');
-    background-repeat: no-repeat;
     background-size: 1600px;
 }
 
@@ -44,9 +43,10 @@ h2 {
 }
 
 .trio-display {
-    padding-top: 5%;
+    padding-top: 1%;
     padding-left: 10%;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
 }
 
 canvas {
@@ -58,8 +58,8 @@ canvas {
 }
 
 img {
-    width: 300px;
-    height: auto;
+    height: 150px;
+    width: auto;
 }
 
 input {
@@ -71,5 +71,6 @@ input {
     font-size: 2rem;
 }
 .all-time {
+    padding-left: 10%;
     font-size: 2rem;
 }

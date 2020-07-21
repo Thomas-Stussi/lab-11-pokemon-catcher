@@ -5,6 +5,7 @@ let encounteredResultsRaw = localStorage.getItem('ENCOUNTERED');
 let encounteredResults = JSON.parse(encounteredResultsRaw);
 
 const ctx = document.getElementById('chart').getContext('2d');
+const cty = document.getElementById('chart1').getContext('2d');
 
 function mungeNames(encounteredResults) {
     let names = [];
@@ -14,6 +15,7 @@ function mungeNames(encounteredResults) {
     }
     return names;
 }
+
 function mungeCaught(encounteredResults) {
     let caught = [];
     for (let i = 0; i < encounteredResults.length; i++) {
@@ -22,6 +24,7 @@ function mungeCaught(encounteredResults) {
     }
     return caught;
 }
+
 function mungeEncountered(encounteredResults) {
     let encountered = [];
     for (let i = 0; i < encounteredResults.length; i++) {

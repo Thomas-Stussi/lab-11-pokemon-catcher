@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 // import functions and grab DOM elements
 import { pokemon } from './pokemon.js';
 import { getRandomPokemon } from './pokemonUtils.js';
@@ -14,14 +15,17 @@ let labels = document.querySelectorAll('label');
 let label0 = labels[0];
 let input0 = label0.children[0];
 let img0 = label0.children[1];
+let span0 = label0.children[2];
 
 let label1 = labels[1];
 let input1 = label1.children[0];
 let img1 = label1.children[1];
+let span1 = label1.children[2];
 
 let label2 = labels[2];
 let input2 = label2.children[0];
 let img2 = label2.children[1];
+let span2 = label2.children[2];
 
 // initialize state
 let triosEncountered = 0;
@@ -48,6 +52,15 @@ const initializeNewTrio = () => {
     }
 
     trio.push(randomPokemon0, randomPokemon1, randomPokemon2);
+    if (trio[0].hasOwnProperty('caught') === false) {
+        trio[0].caught = 0;
+    }
+    if (trio[1].hasOwnProperty('caught') === false) {
+        trio[1].caught = 0;
+    }
+    if (trio[2].hasOwnProperty('caught') === false) {
+        trio[2].caught = 0;
+    }
     //add all three to the encounteredArray
         //if not in array, add to array
     if (encounteredArray.includes(trio[0]) === false) {
@@ -74,12 +87,21 @@ const initializeNewTrio = () => {
     //add properties of those pokemon to the correct html elements
     input0.value = trio[0].id;
     img0.src = trio[0].url_image;
+    span0.textContent = `${trio[0].pokemon} `;
+    span0.textContent += `Caught ${trio[0].caught} times `;
+    span0.textContent += `Encountered ${trio[0].timesEncountered} times`;
 
     input1.value = trio[1].id;
     img1.src = trio[1].url_image;
+    span1.textContent = trio[1].pokemon;
+    span1.textContent += `Caught ${trio[1].caught} times `;
+    span1.textContent += `Encountered ${trio[1].timesEncountered} times`;
 
     input2.value = trio[2].id;
     img2.src = trio[2].url_image;
+    span2.textContent = trio[2].pokemon;
+    span2.textContent += `Caught ${trio[2].caught} times `;
+    span2.textContent += `Encountered ${trio[2].timesEncountered} times`;
 
     radios.forEach((radioTag, i) => {
         if (i === 0) {
