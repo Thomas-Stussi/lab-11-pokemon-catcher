@@ -26,9 +26,9 @@ let img2 = label2.children[1];
 // initialize state
 let triosEncountered = 0;
 let pokemonCaught = 0;
-let randomPokemon0 = getRandomPokemon(pokemon);
+/*let randomPokemon0 = getRandomPokemon(pokemon);
 let randomPokemon1 = getRandomPokemon(pokemon);
-let randomPokemon2 = getRandomPokemon(pokemon);
+let randomPokemon2 = getRandomPokemon(pokemon);*/
 
 // set event listeners to update state and DOM
 
