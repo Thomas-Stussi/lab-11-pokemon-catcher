@@ -24,3 +24,8 @@ body {
 .catch-section {
     display: inline-block
 }
+
+canvas {
+    width: 75%;
+    height: 500px;
+}

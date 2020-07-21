@@ -52,7 +52,7 @@ const initializeNewTrio = () => {
         //if not in array, add to array
     if (encounteredArray.includes(trio[0]) === false) {
         encounteredArray.push(trio[0]);
-        trio[0].timesEncountered = 0;
+        trio[0].timesEncountered = 1;
         //if in array, increment encountered quantity
     } else { if (encounteredArray.includes(trio[0]) === true); 
         trio[0].timesEncountered++;
@@ -60,13 +60,13 @@ const initializeNewTrio = () => {
     //repeat for other two
     if (encounteredArray.includes(trio[1]) === false) {
         encounteredArray.push(trio[1]);
-        trio[1].timesEncountered = 0;
+        trio[1].timesEncountered = 1;
     } else { if (encounteredArray.includes(trio[1]) === true);
         trio[1].timesEncountered++;
     }
     if (encounteredArray.includes(trio[2]) === false) {
         encounteredArray.push(trio[2]);
-        trio[2].timesEncountered = 0;
+        trio[2].timesEncountered = 1;
     } else { if (encounteredArray.includes(trio[2]) === true); 
         trio[2].timesEncountered++;
     }
