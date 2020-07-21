@@ -42,6 +42,11 @@ h2 {
     -webkit-text-stroke: 2px black;
 }
 
+h3 {
+    text-align: center;
+    font-size: 2rem;
+}
+
 .trio-display {
     padding-top: 1%;
     padding-left: 10%;
@@ -65,11 +70,13 @@ img {
 input {
     display: none;
 }
+
 .replay-button {
     padding-left: 30%;
     padding-right: 10%;
     font-size: 2rem;
 }
+
 .all-time {
     padding-left: 10%;
     font-size: 2rem;

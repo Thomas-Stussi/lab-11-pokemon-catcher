@@ -4,6 +4,9 @@ const allTimeResultsButton = document.getElementById('all-time');
 let encounteredResultsRaw = localStorage.getItem('ENCOUNTERED');
 let encounteredResults = JSON.parse(encounteredResultsRaw);
 
+let caughtResultsRaw = localStorage.getItem('CAUGHT');
+let caughtResults = JSON.parse(caughtResultsRaw);
+
 const ctx = document.getElementById('chart').getContext('2d');
 const cty = document.getElementById('chart1').getContext('2d');
 
@@ -34,6 +37,24 @@ function mungeEncountered(encounteredResults) {
     return encountered;
 }
 
+function mungeAttack(caughtResults) {
+    let attackArray = [];
+    for (let i = 0; i < caughtResults.length; i++) {
+        const pokemon = caughtResults[i].attack;
+        attackArray.push(pokemon); 
+    }
+    return attackArray;
+}
+
+function mungeDefense(caughtResults) {
+    let defenseArray = [];
+    for (let i = 0; i < caughtResults.length; i++) {
+        const pokemon = caughtResults[i].defense;
+        defenseArray.push(pokemon); 
+    }
+    return defenseArray;
+}
+
 Chart.defaults.global.defaultFontColor = 'yellow';
 Chart.defaults.global.defaultFontFamily = 'PokemonHollow';
 Chart.defaults.global.defaultFontSize = 16;
@@ -51,6 +72,35 @@ let myChart = new Chart(ctx, {
         }, {
             label: '# Encountered',
             data: mungeEncountered(encounteredResults),
+            backgroundColor: 'blue',
+            borderColor: 'black',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+let attackDefenseChart = new Chart(cty, {
+    type: 'bar',
+    data: {
+        labels: mungeNames(caughtResults),
+        datasets: [{
+            label: 'Attack',
+            data: mungeAttack(caughtResults),
+            backgroundColor: 'red',
+            borderColor: 'black',
+            borderWidth: 1
+        }, {
+            label: 'Defense',
+            data: mungeDefense(caughtResults),
             backgroundColor: 'blue',
             borderColor: 'black',
             borderWidth: 1
