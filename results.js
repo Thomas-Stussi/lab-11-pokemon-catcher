@@ -1,5 +1,5 @@
-let caughtResultsRaw = localStorage.getItem('CAUGHT');
-let caughtResults = JSON.parse(caughtResultsRaw);
+const playAgainButton = document.getElementById('play-again');
+const allTimeResultsButton = document.getElementById('all-time');
 
 let encounteredResultsRaw = localStorage.getItem('ENCOUNTERED');
 let encounteredResults = JSON.parse(encounteredResultsRaw);
@@ -32,7 +32,8 @@ function mungeEncountered(encounteredResults) {
 }
 
 Chart.defaults.global.defaultFontColor = 'yellow';
-Chart.defaults.global.defaultFontFamily = 'PokemonSolid';
+Chart.defaults.global.defaultFontFamily = 'PokemonHollow';
+Chart.defaults.global.defaultFontSize = 16;
 // eslint-disable-next-line no-undef, no-unused-vars
 let myChart = new Chart(ctx, {
     type: 'bar',
@@ -61,4 +62,18 @@ let myChart = new Chart(ctx, {
             }]
         }
     }
+});
+
+playAgainButton.addEventListener('click', () => {
+    localStorage.setItem('CAUGHT', []);
+    localStorage.setItem('ENCOUNTERED', []);
+    localStorage.setItem('ALL-TIME', encounteredResultsRaw);
+    window.location.href = './index.html';
+});
+
+allTimeResultsButton.addEventListener('click', () => {
+    localStorage.setItem('CAUGHT', []);
+    localStorage.setItem('ENCOUNTERED', []);
+    localStorage.setItem('ALL-TIME', encounteredResultsRaw);
+    window.location.href = './all-time.html';
 });
