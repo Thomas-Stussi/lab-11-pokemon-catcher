@@ -21,3 +21,6 @@ body {
     font-family: 'Titillium Web', sans-serif;
     background-color: var(--color2);
 }
+.catch-section {
+    display: inline-block
+}

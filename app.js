@@ -38,12 +38,16 @@ const initializeNewTrio = () => {
     let randomPokemon1 = getRandomPokemon(pokemon);
     let randomPokemon2 = getRandomPokemon(pokemon);
     while (randomPokemon0.id === randomPokemon1.id || randomPokemon0.id === randomPokemon2.id || randomPokemon1.id === randomPokemon2.id) {
-        let randomPokemon0 = getRandomPokemon(pokemon);
-        let randomPokemon1 = getRandomPokemon(pokemon);
-        let randomPokemon2 = getRandomPokemon(pokemon);
+        if (randomPokemon0.id !== randomPokemon1.id && randomPokemon0.id !== randomPokemon2.id && randomPokemon1.id !== randomPokemon2.id) {
+            break;
+        }
+        randomPokemon0 = getRandomPokemon(pokemon);
+        randomPokemon1 = getRandomPokemon(pokemon);
+        randomPokemon2 = getRandomPokemon(pokemon);
+        
     }
-    trio.push(randomPokemon0, randomPokemon1, randomPokemon2);
 
+    trio.push(randomPokemon0, randomPokemon1, randomPokemon2);
     //add all three to the encounteredArray
         //if not in array, add to array
     if (encounteredArray.includes(trio[0]) === false) {
@@ -123,8 +127,11 @@ radios.forEach((radio) => {
         caughtCounter.textContent = `Congratulations! You've caught ${pokemonCaught} pokemon!`; 
         //reset the game
         if (triosEncountered === 10) {
-            console.log('relocate');
+            //console.log('relocate');
             window.location.href = './results.html';
+            //update the results
+            localStorage.setItem('CAUGHT', JSON.stringify(caughtArray));
+            localStorage.setItem('ENCOUNTERED', JSON.stringify(encounteredArray));
         }
         //clear trio and checked
         radios.checked = false;
