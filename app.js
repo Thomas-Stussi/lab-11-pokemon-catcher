@@ -87,20 +87,20 @@ const initializeNewTrio = () => {
     //add properties of those pokemon to the correct html elements
     input0.value = trio[0].id;
     img0.src = trio[0].url_image;
-    span0.textContent = `${trio[0].pokemon} `;
-    span0.textContent += `Caught ${trio[0].caught} times `;
+    span0.textContent = trio[0].pokemon;
+    span0.textContent += ` Caught ${trio[0].caught} times, `;
     span0.textContent += `Encountered ${trio[0].timesEncountered} times`;
 
     input1.value = trio[1].id;
     img1.src = trio[1].url_image;
     span1.textContent = trio[1].pokemon;
-    span1.textContent += `Caught ${trio[1].caught} times `;
+    span1.textContent += ` Caught ${trio[1].caught} times, `;
     span1.textContent += `Encountered ${trio[1].timesEncountered} times`;
 
     input2.value = trio[2].id;
     img2.src = trio[2].url_image;
     span2.textContent = trio[2].pokemon;
-    span2.textContent += `Caught ${trio[2].caught} times `;
+    span2.textContent += ` Caught ${trio[2].caught} times, `;
     span2.textContent += `Encountered ${trio[2].timesEncountered} times`;
 
     radios.forEach((radioTag, i) => {
