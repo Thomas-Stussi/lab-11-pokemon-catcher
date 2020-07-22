@@ -184,7 +184,7 @@ var data = {
         {
             fill: true,
             borderColor: 'black',
-            backgroundColor: ['green', 'red', 'blue', 'brown', 'grey', 'white', 'chartreuse', 'crimson'],
+            backgroundColor: ['green', 'red', 'blue', 'orange', 'grey', 'white', 'chartreuse', 'purple'],
             data: mungeTypeQuantity(pokemonTypes)
         }
     ]
