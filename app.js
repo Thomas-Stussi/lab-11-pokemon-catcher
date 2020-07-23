@@ -89,7 +89,6 @@ const initializeNewTrio = () => {
         } else {
             allTimeArray[some].timesEncountered++;
         }
-        console.log(some);
     }
 
     //add properties of those pokemon to the correct html elements
