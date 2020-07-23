@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const playAgainButton = document.getElementById('play-again');
 
 playAgainButton.addEventListener('click', () => {
@@ -39,7 +40,7 @@ function mungeEncountered(allTimeResults) {
 Chart.defaults.global.defaultFontColor = 'yellow';
 Chart.defaults.global.defaultFontFamily = 'PokemonHollow';
 Chart.defaults.global.defaultFontSize = 16;
-// eslint-disable-next-line no-undef, no-unused-vars
+// eslint-disable-next-line no-unused-vars
 let myChart = new Chart(ctx, {
     type: 'bar',
     data: {

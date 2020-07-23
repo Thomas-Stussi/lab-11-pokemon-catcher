@@ -5,7 +5,7 @@ import { getRandomPokemon } from './pokemonUtils.js';
 
 const caughtCounter = document.getElementById('caught-counter');
 const radios = document.querySelectorAll('input');
-let caughtArray = [];
+let allTimeArray = JSON.parse(localStorage.getItem('ALL-TIME')) || [];
 let encounteredArray = [];
 let trio = [];
 
@@ -30,9 +30,6 @@ let span2 = label2.children[2];
 // initialize state
 let triosEncountered = 0;
 let pokemonCaught = 0;
-/*let randomPokemon0 = getRandomPokemon(pokemon);
-let randomPokemon1 = getRandomPokemon(pokemon);
-let randomPokemon2 = getRandomPokemon(pokemon);*/
 
 // set event listeners to update state and DOM
 
@@ -83,6 +80,17 @@ const initializeNewTrio = () => {
     } else { if (encounteredArray.includes(trio[2]) === true); 
         trio[2].timesEncountered++;
     }
+      //add all three to the allTimeArray
+
+    for (let i = 0; i < trio.length; i++) {
+        let some = allTimeArray.findIndex(pokemon => pokemon.id === trio[i].id);
+        if (some === -1) {
+            allTimeArray.push(trio[i]);
+        } else {
+            allTimeArray[some].timesEncountered++;
+        }
+        console.log(some);
+    }
 
     //add properties of those pokemon to the correct html elements
     input0.value = trio[0].id;
@@ -119,30 +127,14 @@ radios.forEach((radio) => {
     radio.addEventListener('click', (event) => {
         //get the pokemon from that radio
         if (Number(event.target.value) === trio[0].id) {
-            //if uncaught push to caughtArray and initialize caught property
-            if (caughtArray.includes(trio[0]) === false) {
-                caughtArray.push(trio[0]);
-                trio[0].caught = 1;
-            } else {
-                //increment caught property
-                trio[0].caught++;
-            }
+            //if uncaught push to allTimeArray and initialize caught property
+            trio[0].caught++;
         }
         if (Number(event.target.value) === trio[1].id) {
-            if (caughtArray.includes(trio[1]) === false) {
-                caughtArray.push(trio[1]);
-                trio[1].caught = 1;
-            } else {
-                trio[1].caught++;
-            }
+            trio[1].caught++;
         }
         if (Number(event.target.value) === trio[2].id) {
-            if (caughtArray.includes(trio[2]) === false) {
-                caughtArray.push(trio[2]);
-                trio[2].caught = 1;
-            } else {
-                trio[2].caught++;
-            }
+            trio[2].caught++;
         }
         pokemonCaught++;
         triosEncountered++;
@@ -152,9 +144,9 @@ radios.forEach((radio) => {
             //console.log('relocate');
             window.location.href = './results.html';
             //update the results
-            localStorage.setItem('CAUGHT', JSON.stringify(caughtArray));
+            localStorage.setItem('ALL-TIME', JSON.stringify(allTimeArray));
             localStorage.setItem('ENCOUNTERED', JSON.stringify(encounteredArray));
-        }
+        } 
         //clear trio and checked
         radios.checked = false;
         trio = [];

@@ -1,15 +1,18 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const playAgainButton = document.getElementById('play-again');
 const allTimeResultsButton = document.getElementById('all-time');
 
-let encounteredResultsRaw = localStorage.getItem('ENCOUNTERED');
+let encounteredResultsRaw = localStorage.getItem('ENCOUNTERED') || [];
 let encounteredResults = JSON.parse(encounteredResultsRaw);
 
-let caughtResultsRaw = localStorage.getItem('CAUGHT');
-let caughtResults = JSON.parse(caughtResultsRaw);
+let allTimeResultsRaw = localStorage.getItem('ALL-TIME');
+let allTimeResults = JSON.parse(allTimeResultsRaw);
 
 const ctx = document.getElementById('chart').getContext('2d');
 const cty = document.getElementById('chart1').getContext('2d');
 const ctz = document.getElementById('chart2').getContext('2d');
+
 
 function mungeNames(encounteredResults) {
     let names = [];
@@ -38,19 +41,19 @@ function mungeEncountered(encounteredResults) {
     return encountered;
 }
 
-function mungeAttack(caughtResults) {
+function mungeAttack(encounteredResults) {
     let attackArray = [];
-    for (let i = 0; i < caughtResults.length; i++) {
-        const pokemon = caughtResults[i].attack;
+    for (let i = 0; i < encounteredResults.length; i++) {
+        const pokemon = encounteredResults[i].attack;
         attackArray.push(pokemon); 
     }
     return attackArray;
 }
 
-function mungeDefense(caughtResults) {
+function mungeDefense(encounteredResults) {
     let defenseArray = [];
-    for (let i = 0; i < caughtResults.length; i++) {
-        const pokemon = caughtResults[i].defense;
+    for (let i = 0; i < encounteredResults.length; i++) {
+        const pokemon = encounteredResults[i].defense;
         defenseArray.push(pokemon); 
     }
     return defenseArray;
@@ -93,7 +96,7 @@ function classifyType(array) {
     }
     return typeArray;
 }
-const pokemonTypes = classifyType(caughtResults);
+const pokemonTypes = classifyType(encounteredResults);
 
 //munge names from typeArray
 function mungeTypeName(pokemonTypes) {
@@ -151,16 +154,16 @@ let myChart = new Chart(ctx, {
 let attackDefenseChart = new Chart(cty, {
     type: 'bar',
     data: {
-        labels: mungeNames(caughtResults),
+        labels: mungeNames(encounteredResults),
         datasets: [{
             label: 'Attack',
-            data: mungeAttack(caughtResults),
+            data: mungeAttack(encounteredResults),
             backgroundColor: 'red',
             borderColor: 'black',
             borderWidth: 1
         }, {
             label: 'Defense',
-            data: mungeDefense(caughtResults),
+            data: mungeDefense(encounteredResults),
             backgroundColor: 'blue',
             borderColor: 'black',
             borderWidth: 1
@@ -194,18 +197,17 @@ let myPieChart = new Chart(ctz, {
     type: 'pie',
     data: data,
 });
+ 
 
 
 playAgainButton.addEventListener('click', () => {
-    localStorage.setItem('CAUGHT', []);
     localStorage.setItem('ENCOUNTERED', []);
-    localStorage.setItem('ALL-TIME', encounteredResultsRaw);
+    localStorage.setItem('ALL-TIME', JSON.stringify(allTimeResults));
     window.location.href = './index.html';
 });
 
 allTimeResultsButton.addEventListener('click', () => {
-    localStorage.setItem('CAUGHT', []);
     localStorage.setItem('ENCOUNTERED', []);
-    localStorage.setItem('ALL-TIME', encounteredResultsRaw);
+    localStorage.setItem('ALL-TIME', JSON.stringify(allTimeResults));
     window.location.href = './all-time.html';
 });
